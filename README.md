@@ -1,8 +1,6 @@
 # Ex-3-RECOGNITION-OF-A-VALID-ARITHMETIC-EXPRESSION-THAT-USES-OPERATOR-AND-USING-YACC
 
-# Register Number: 212225040439
-
-# Date:08.08.2026
+# Date: 10-08-2026
 
 # AIM
 To write a yacc program to recognize a valid arithmetic expression that uses operator +,- ,* and /.
@@ -19,6 +17,37 @@ To write a yacc program to recognize a valid arithmetic expression that uses ope
 
 # PROGRAM
 ```
+expcd3.l
+%{
+#include "exp3cd.tab.h"
+#include <stdio.h>
+%}
+
+%%
+
+[0-9]+                  { return NUMBER; }
+[a-zA-Z][a-zA-Z0-9]*    { return ID; }
+
+"+"     { return '+'; }
+"-"     { return '-'; }
+"*"     { return '*'; }
+"/"     { return '/'; }
+"("     { return '('; }
+")"     { return ')'; }
+
+[ \t]   ;          /* ignore spaces */
+\n      return 0;
+
+.       return yytext[0];
+
+%%
+
+int yywrap()
+{
+    return 1;
+}
+
+expcd3.y
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -61,53 +90,24 @@ factor:
 
 %%
 
-int main()
-{
+int main() {
     printf("Enter Expression:\n");
-    yyparse();
+    
+    if (yyparse() == 0) {
+        printf("Valid Arithmetic Expression\n");
+    }
     return 0;
 }
 
-void yyerror(const char *s)
-{
-    valid = 0;
-    printf("\nInvalid Arithmetic Expression\n");
-}
-
-
-
-%{
-#include "y.tab.h"
-#include <stdio.h>
-%}
-
-%%
-
-[0-9]+                  { return NUMBER; }
-[a-zA-Z][a-zA-Z0-9]*    { return ID; }
-
-"+"     { return '+'; }
-"-"     { return '-'; }
-"*"     { return '*'; }
-"/"     { return '/'; }
-"("     { return '('; }
-")"     { return ')'; }
-
-[ \t]   ;          /* ignore spaces */
-\n      return 0;
-
-.       return yytext[0];
-
-%%
-
-int yywrap()
-{
-    return 1;
+void yyerror(char *s) {
+    printf("Invalid Arithmetic Expression\n");
 }
 ```
+
 # OUTPUT
 
-<img width="632" height="582" alt="Screenshot 2026-08-06 112713" src="https://github.com/user-attachments/assets/95fe7d52-6d9a-4bc8-b309-0a8d0aee0fbe" />
+<img width="1484" height="1060" alt="Screenshot_04_18_57 PM" src="https://github.com/user-attachments/assets/693f40b8-8159-4c64-91a1-a15947644179" />
+
 
 # RESULT
 A YACC program to recognize a valid arithmetic expression that uses operator +,-,* and / is executed successfully and the output is verified.
