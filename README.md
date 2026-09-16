@@ -106,7 +106,7 @@ void yyerror(char *s) {
 
 # OUTPUT
 
-<img width="1484" height="1060" alt="Screenshot_04_18_57 PM" src="https://github.com/user-attachments/assets/693f40b8-8159-4c64-91a1-a15947644179" />
+<img width="1484" height="1060" alt="image" src="https://github.com/user-attachments/assets/49d6220e-580a-4e9f-9ed0-d3b57fd08b4b" />
 
 
 # RESULT
